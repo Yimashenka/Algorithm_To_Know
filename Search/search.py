@@ -35,24 +35,29 @@ def linear_search_v2(array, value):
 
 
 # BINARY SEARCH
-def binary_search(array, value):
+def binary_search(array, value, l, r):
     """
     :param array: The array to search in
     :param value: The value to find
     :return: The position of the value in the array, -1 if not in
     """
-    left = 0
-    right = len(array) - 1
 
-    while left <= right:
-        middle = left + (right - 1) // 2
+    while l <= r:
+        mid = l + (r - l) // 2
 
-        if array[middle] ==  value:
-            return middle
-        elif array[middle] < value:
-            left = middle + 1
+        # Check if x is present at mid
+        if array[mid] == value:
+            return mid
+
+        # If x is greater, ignore left half
+        elif array[mid] < value:
+            l = mid + 1
+
+        # If x is smaller, ignore right half
         else:
-            right = middle - 1
+            r = mid - 1
 
+    # If we reach here, then the element
+    # was not present
     return -1
 
